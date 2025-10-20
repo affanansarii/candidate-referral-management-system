@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create axios instance with base URL
 const api = axios.create({
-    baseURL: 'https://candidate-referral-management-syste-cyan.vercel.app/api',
+    baseURL: 'http://localhost:5000/api'
 });
 
 // Add request interceptor to include auth token
@@ -12,6 +12,7 @@ api.interceptors.request.use(
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
+        config.headers['Content-Type'] = 'application/json';
         return config;
     },
     (error) => {
